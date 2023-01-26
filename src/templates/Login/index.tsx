@@ -2,8 +2,8 @@ import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Feedback from "../../components/Feedback";
-import { getSession, useSession } from "next-auth/react";
 import SocialMediaButton from "../../components/SocialMediaButton";
+import { useSession } from "next-auth/react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -41,12 +41,6 @@ export default function Login() {
 
     return username;
   };
-
-  useEffect(() => {
-    if (session) {
-      window.location.href = `/User/${session?.user?.name}`;
-    }
-  }, [session]);
 
   return (
     <>

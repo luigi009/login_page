@@ -1,4 +1,4 @@
-export default {
+export const feedbackTypes = {
   success: {
     iconSrc: "/svg/success.svg",
     iconAlt: "Ícone de sucesso",

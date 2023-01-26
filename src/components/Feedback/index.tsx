@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import * as I from "./interfaces";
-import C from "./const";
+import { feedbackTypes } from "./const";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -26,17 +26,17 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
                   <Image
                     width={30}
                     height={30}
-                    src={C[type].iconSrc}
-                    alt={C[type].iconAlt}
+                    src={feedbackTypes[type].iconSrc}
+                    alt={feedbackTypes[type].iconAlt}
                   />
                 </div>
                 <div className="mt-3 text-center sm:mt-0 sm:text-left">
                   <h3 className="text-lg font-medium leading-6 text-gray-900 my-4 text-center">
-                    {C[type].title}
+                    {feedbackTypes[type].title}
                   </h3>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500 text-center">
-                      {C[type].paragraph}
+                      {feedbackTypes[type].paragraph}
                     </p>
                   </div>
                 </div>
@@ -48,7 +48,7 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
                     type="button"
                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 hover:bg-red-700 focus:ring-red-500 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm ease-in-out duration-300"
                   >
-                    {C[type].buttonText}
+                    {feedbackTypes[type].buttonText}
                   </button>
                 )}
                 {type === "success" && (
@@ -59,7 +59,7 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
                       query: { user: userName() },
                     }}
                   >
-                    {C[type].buttonText}
+                    {feedbackTypes[type].buttonText}
                   </Link>
                 )}
               </div>

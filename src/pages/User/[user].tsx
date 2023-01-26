@@ -1,24 +1,18 @@
-import React, { useEffect } from "react";
-import { useSession, signOut, getSession } from "next-auth/react";
+import React from "react";
+import { useSession, signOut } from "next-auth/react";
 import Button from "../../components/Button";
 
-function user() {
+function User() {
   const { data: session } = useSession();
-
-  useEffect(() => {
-    if (!session) {
-      window.location.href = "/";
-    }
-  }, [session]);
 
   return (
     <>
       {session && session.user.email}
-      <Button type="button" onClick={() => signOut()}>
+      <Button type="button" onClick={() => signOut({ callbackUrl: "/" })}>
         Sign out
       </Button>
     </>
   );
 }
 
-export default user;
+export default User;

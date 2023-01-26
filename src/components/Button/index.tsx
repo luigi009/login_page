@@ -1,9 +1,10 @@
 import React from "react";
 import * as I from "./interfaces";
 
-function index({ children, onClick, className }: I.ButtonProps) {
+function Button({ children, onClick, className, type }: I.ButtonProps) {
   return (
     <button
+      type={type}
       onClick={onClick}
       className={`${
         className
@@ -16,4 +17,4 @@ function index({ children, onClick, className }: I.ButtonProps) {
   );
 }
 
-export default index;
+export default Button;

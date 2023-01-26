@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as I from "./interfaces";
 import C from "./const";
 import Link from "next/link";
+import Image from "next/image";
 
 function index({ type, show, onClose, userName }: I.FeedbackProps) {
   const handleClose = () => {
@@ -22,8 +23,9 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
                     type === "error" ? "bg-red-100" : "bg-emerald-100"
                   }  sm:mx-0 sm:h-10 sm:w-10`}
                 >
-                  <img
-                    className="w-9/12"
+                  <Image
+                    width={30}
+                    height={30}
                     src={C[type].iconSrc}
                     alt={C[type].iconAlt}
                   />

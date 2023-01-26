@@ -83,20 +83,3 @@ export default function Login() {
     </>
   );
 }
-
-export async function getServerSideProps({ req }) {
-  const session = await getSession({ req });
-
-  if (session) {
-    return {
-      redirect: {
-        destination: `${window.location.origin}/User/${session.user.name}`,
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { session },
-  };
-}

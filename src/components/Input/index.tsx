@@ -1,5 +1,6 @@
 import React from "react";
 import * as I from "./interfaces";
+import Image from "next/image";
 
 function index({
   label,
@@ -27,7 +28,7 @@ function index({
       </label>
       <div className="relative">
         <div className="inline-flex items-center justify-center absolute left-0 bottom-2 h-full w-10 text-gray-400">
-          <img className="w-8/12" src={imgIcon} alt={altImgIcon} />
+          <Image src={imgIcon} alt={altImgIcon} width={30} height={30} />
         </div>
         <input
           type={type}

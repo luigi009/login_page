@@ -1,13 +1,16 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Feedback from "../../components/Feedback";
+import { getSession, useSession } from "next-auth/react";
+import SocialMediaButton from "../../components/SocialMediaButton";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedbackType, setFeedbackType] = useState("error");
+  const { data: session } = useSession();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -39,6 +42,12 @@ export default function Login() {
     return username;
   };
 
+  useEffect(() => {
+    if (session) {
+      window.location.href = `/User/${session?.user?.name}`;
+    }
+  }, [session]);
+
   return (
     <>
       <form onSubmit={onSubmit}>
@@ -69,7 +78,25 @@ export default function Login() {
           userName={userNamePage}
         />
         <Button type="submit">Login</Button>
+        <SocialMediaButton />
       </form>
     </>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: `${window.location.origin}/User/${session.user.name}`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 }

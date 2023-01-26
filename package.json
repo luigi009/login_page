@@ -14,6 +14,7 @@
     "eslint-config-next": "13.1.4",
     "heroicons": "^2.0.13",
     "next": "13.1.4",
+    "next-auth": "^4.18.10",
     "next-transpile-modules": "^10.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"

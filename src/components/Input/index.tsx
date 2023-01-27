@@ -21,13 +21,13 @@ function index({
         className={`${
           labelClassName
             ? labelClassName
-            : "mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
+            : "mb-1 text-xs sm:text-sm tracking-wide text-stone-900"
         }`}
       >
         {label}
       </label>
       <div className="relative">
-        <div className="inline-flex items-center justify-center absolute left-0 bottom-2 h-full w-10 text-gray-400">
+        <div className="inline-flex items-center justify-center absolute left-[2px] bottom-[17px] h-10 w-10 text-gray-400 bg-zinc-800 rounded-tl-md rounded-bl-md">
           <Image src={imgIcon} alt={altImgIcon} width={30} height={30} />
         </div>
         <input
@@ -39,9 +39,9 @@ function index({
           className={`${
             inputClassName
               ? inputClassName
-              : `text-sm sm:text-base placeholder-gray-500 mb-4 ${
-                  imgIcon ? "pl-10 pr-4 py-2" : "py-2 px-4"
-                } rounded-lg border border-gray-400 w-full focus:outline-none focus:border-[#2b5aa4]`
+              : `text-sm sm:text-base mb-4 ${
+                  imgIcon ? "pl-12 pr-4 py-2" : "py-2 px-4"
+                } bg-zinc-600 placeholder:text-white text-white rounded-lg border border-gray-400 w-full focus:outline-none focus:border-white`
           }`}
         />
       </div>

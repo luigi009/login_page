@@ -3,7 +3,7 @@ import Login from "../templates/Login";
 
 export default function Home() {
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500">
       <Login />
     </div>
   );

@@ -1,16 +1,15 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Feedback from "../../components/Feedback";
 import SocialMediaButton from "../../components/SocialMediaButton";
-import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedbackType, setFeedbackType] = useState("error");
-  const { data: session } = useSession();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -43,8 +42,18 @@ export default function Login() {
   };
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
+    <div className="w-full h-screen flex flex-col justify-center items-center drop-shadow-lg">
+      <Image
+        className="bg-zinc-800 p-3 rounded-full relative top-8 z-10 drop-shadow-lg"
+        src="/svg/user.svg"
+        alt="user-icon"
+        width={100}
+        height={100}
+      />
+      <form
+        className="w-96 rounded-xl bg-[#c9bbcb] bg-opacity-50 px-10 py-10 shadow-lg backdrop-blur-md max-sm:px-8"
+        onSubmit={onSubmit}
+      >
         <Input
           label="Email"
           name="email"
@@ -65,15 +74,15 @@ export default function Login() {
           imgIcon="/svg/password.svg"
           altImgIcon="Password"
         />
-        <Feedback
-          type={feedbackType}
-          show={showFeedback}
-          onClose={() => setShowFeedback(false)}
-          userName={userNamePage}
-        />
         <Button type="submit">Login</Button>
         <SocialMediaButton />
       </form>
-    </>
+      <Feedback
+        type={feedbackType}
+        show={showFeedback}
+        onClose={() => setShowFeedback(false)}
+        userName={userNamePage}
+      />
+    </div>
   );
 }

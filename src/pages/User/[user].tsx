@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSession, signOut, getSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import Button from "../../components/Button";
 import Image from "next/image";
 import useSWR from "swr";

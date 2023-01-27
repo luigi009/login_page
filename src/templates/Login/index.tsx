@@ -27,9 +27,14 @@ export default function Login() {
     );
 
     if (emailRegex.test(email) && password.length >= 8) {
+      localStorage.setItem("email", email);
+
       setFeedbackType("success");
       setShowFeedback(true);
-    } else {
+    } else if (emailRegex.test(email) && password.length < 8) {
+      setFeedbackType("warning");
+      setShowFeedback(true);
+    } else if (!emailRegex.test(email) && password.length === 0) {
       setFeedbackType("error");
       setShowFeedback(true);
     }

@@ -9,6 +9,19 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
     onClose();
   };
 
+  const chngeBackgroundColor = () => {
+    switch (type) {
+      case "error":
+        return "bg-red-100";
+      case "success":
+        return "bg-emerald-100";
+      case "warning":
+        return "bg-yellow-100";
+      default:
+        return "bg-emerald-100";
+    }
+  };
+
   return (
     <div className={`${show ? "block" : "hidden"} relative z-10`}>
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -19,9 +32,7 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div className="flex flex-col items-center justify-center">
                 <div
-                  className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full ${
-                    type === "error" ? "bg-red-100" : "bg-emerald-100"
-                  }  sm:mx-0 sm:h-10 sm:w-10`}
+                  className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full ${chngeBackgroundColor()} sm:mx-0 sm:h-10 sm:w-10`}
                 >
                   <Image
                     width={30}
@@ -41,7 +52,7 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 justify-center mt-4">
+              <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 justify-center mt-4">
                 {type === "error" && (
                   <button
                     onClick={handleClose}
@@ -61,6 +72,15 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
                   >
                     {feedbackTypes[type].buttonText}
                   </Link>
+                )}
+                {type === "warning" && (
+                  <button
+                    onClick={handleClose}
+                    type="button"
+                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm ease-in-out duration-300"
+                  >
+                    {feedbackTypes[type].buttonText}
+                  </button>
                 )}
               </div>
             </div>

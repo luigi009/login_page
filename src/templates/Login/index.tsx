@@ -13,7 +13,7 @@ export default function Login() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedbackType, setFeedbackType] = useState("error");
   const { data: session } = useSession();
-  const { status } = useSession();
+  const [loading, setLoading] = useState(false);
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -32,11 +32,15 @@ export default function Login() {
       password: password,
     });
 
+    setLoading(true);
+
     if (res.ok) {
       Router.push(`/User/${session && session.user.name}`);
+      setLoading(false);
     } else {
       setFeedbackType("error");
       setShowFeedback(true);
+      setLoading(false);
     }
   };
 
@@ -45,8 +49,6 @@ export default function Login() {
 
     return username;
   };
-
-  console.log(status);
 
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center drop-shadow-lg">
@@ -81,9 +83,7 @@ export default function Login() {
           imgIcon="/svg/password.svg"
           altImgIcon="Password"
         />
-        <Button type="submit">
-          {status !== "loading" ? "Login" : "Loading..."}
-        </Button>
+        <Button type="submit">{loading ? "Loading..." : "Login"}</Button>
         <SocialMediaButton />
       </form>
       <Feedback

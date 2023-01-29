@@ -25,14 +25,13 @@ export default function Login() {
 
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const res = await signIn("credentials", {
       redirect: false,
       email: email,
       password: password,
     });
-
-    setLoading(true);
 
     if (res.ok) {
       Router.push(`/User/${session && session.user.name}`);
@@ -83,7 +82,9 @@ export default function Login() {
           imgIcon="/svg/password.svg"
           altImgIcon="Password"
         />
-        <Button type="submit">{loading ? "Loading..." : "Login"}</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? "Loading..." : "Login"}
+        </Button>
         <SocialMediaButton />
       </form>
       <Feedback

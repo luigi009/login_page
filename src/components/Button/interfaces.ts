@@ -5,4 +5,5 @@ export interface ButtonProps {
   onClick?: (event?: SyntheticEvent) => void;
   className?: string;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }

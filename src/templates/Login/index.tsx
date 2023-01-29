@@ -1,15 +1,18 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEventHandler } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Feedback from "../../components/Feedback";
 import SocialMediaButton from "../../components/SocialMediaButton";
 import Image from "next/image";
+import { signIn, useSession } from "next-auth/react";
+import Router from "next/router";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedbackType, setFeedbackType] = useState("error");
+  const { data: session } = useSession();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -19,22 +22,18 @@ export default function Login() {
     setPassword(e.target.value);
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    const emailRegex = new RegExp(
-      "^[a-zA-Z0-9_.+-]+@(hotmail|gmail|yahoo|outlook|live)\\.com$"
-    );
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: email,
+      password: password,
+    });
 
-    if (emailRegex.test(email) && password.length >= 8) {
-      localStorage.setItem("email", email);
-
-      setFeedbackType("success");
-      setShowFeedback(true);
-    } else if (emailRegex.test(email) && password.length < 8) {
-      setFeedbackType("warning");
-      setShowFeedback(true);
-    } else if (!emailRegex.test(email) && password.length === 0) {
+    if (res.ok) {
+      Router.push(`/User/${session && session.user.name}`);
+    } else {
       setFeedbackType("error");
       setShowFeedback(true);
     }
@@ -56,8 +55,8 @@ export default function Login() {
         height={100}
       />
       <form
-        className="w-96 rounded-xl bg-[#c9bbcb] bg-opacity-50 px-10 py-10 shadow-lg backdrop-blur-md max-sm:px-8"
         onSubmit={onSubmit}
+        className="w-96 rounded-xl bg-[#c9bbcb] bg-opacity-50 px-10 py-10 shadow-lg backdrop-blur-md max-sm:px-8"
       >
         <Input
           label="Email"

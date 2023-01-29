@@ -10,7 +10,9 @@ function SocialMediaButton() {
       <Button
         type="button"
         onClick={() =>
-          signIn(null, { callbackUrl: `/User/${session && session.user.name}` })
+          signIn("github", {
+            callbackUrl: `/User/${session && session.user.name}`,
+          })
         }
         className={
           "flex flex-row justify-start items-center pointer w-full my-4 text-xl bg-[#444444] text-white border-2 border-[#444444] p-2 rounded-full uppercase font-bold hover:opacity-75 ease-in-out duration-300"

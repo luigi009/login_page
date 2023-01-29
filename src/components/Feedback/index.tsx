@@ -13,12 +13,8 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
     switch (type) {
       case "error":
         return "bg-red-100";
-      case "success":
-        return "bg-emerald-100";
-      case "warning":
-        return "bg-yellow-100";
       default:
-        return "bg-emerald-100";
+        return "bg-red-100";
     }
   };
 
@@ -58,26 +54,6 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
                     onClick={handleClose}
                     type="button"
                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 hover:bg-red-700 focus:ring-red-500 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm ease-in-out duration-300"
-                  >
-                    {feedbackTypes[type].buttonText}
-                  </button>
-                )}
-                {type === "success" && (
-                  <Link
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm ease-in-out duration-300"
-                    href={{
-                      pathname: "/User/[user]",
-                      query: { user: userName() },
-                    }}
-                  >
-                    {feedbackTypes[type].buttonText}
-                  </Link>
-                )}
-                {type === "warning" && (
-                  <button
-                    onClick={handleClose}
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm ease-in-out duration-300"
                   >
                     {feedbackTypes[type].buttonText}
                   </button>

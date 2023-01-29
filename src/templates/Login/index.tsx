@@ -12,7 +12,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedbackType, setFeedbackType] = useState("error");
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -44,6 +44,8 @@ export default function Login() {
 
     return username;
   };
+
+  console.log(status);
 
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center drop-shadow-lg">
@@ -78,7 +80,9 @@ export default function Login() {
           imgIcon="/svg/password.svg"
           altImgIcon="Password"
         />
-        <Button type="submit">Login</Button>
+        <Button type="submit">
+          {status === "loading" ? "loading" : "Login"}
+        </Button>
         <SocialMediaButton />
       </form>
       <Feedback

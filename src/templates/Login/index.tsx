@@ -12,7 +12,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedbackType, setFeedbackType] = useState("error");
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
+  const { status } = useSession();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -81,7 +82,7 @@ export default function Login() {
           altImgIcon="Password"
         />
         <Button type="submit">
-          {status === "loading" ? "loading" : "Login"}
+          {status !== "loading" ? "Login" : "Loading..."}
         </Button>
         <SocialMediaButton />
       </form>

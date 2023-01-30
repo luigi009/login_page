@@ -31,7 +31,7 @@ function User({ sessionServerSideProps }) {
         height={100}
         className="rounded-full relative top-8 z-10 drop-shadow-lg bg-zinc-800 p-3"
       />
-      <div className="w-96 rounded-xl bg-[#c9bbcb] bg-opacity-50 px-10 py-10 shadow-lg backdrop-blur-md max-sm:px-8 drop-shadow-lg">
+      <div className="w-11/12 sm:w-96 rounded-xl bg-[#c9bbcb] bg-opacity-50 px-10 py-10 shadow-lg backdrop-blur-md max-sm:px-8 drop-shadow-lg">
         <h1 className="text-4xl font-bold text-center">{data?.test}</h1>
         <h2 className="text-2xl font-bold text-center mt-4">
           {sessionServerSideProps && sessionServerSideProps.user.name}

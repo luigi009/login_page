@@ -60,7 +60,7 @@ export default function Login() {
       />
       <form
         onSubmit={onSubmit}
-        className="w-96 rounded-xl bg-[#c9bbcb] bg-opacity-50 px-10 py-10 shadow-lg backdrop-blur-md max-sm:px-8"
+        className="w-11/12 sm:w-96 rounded-xl bg-[#c9bbcb] bg-opacity-50 px-10 py-10 shadow-lg backdrop-blur-md max-sm:px-8"
       >
         <Input
           label="Email"

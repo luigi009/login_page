@@ -27,7 +27,7 @@ function index({
         {label}
       </label>
       <div className="relative">
-        <div className="inline-flex items-center justify-center absolute left-[2px] bottom-[17px] h-10 w-10 text-gray-400 bg-zinc-800 rounded-tl-md rounded-bl-md">
+        <div className="inline-flex items-center justify-center absolute left-[2px] bottom-[17px] h-9 w-9 sm:h-10 sm:w-10 text-gray-400 bg-zinc-800 rounded-tl-md rounded-bl-md">
           <Image src={imgIcon} alt={altImgIcon} width={30} height={30} />
         </div>
         <input

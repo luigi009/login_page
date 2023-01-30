@@ -43,12 +43,6 @@ export default function Login() {
     }
   };
 
-  const userNamePage = () => {
-    const username = email.split("@")[0];
-
-    return username;
-  };
-
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center drop-shadow-lg">
       <Image
@@ -91,7 +85,6 @@ export default function Login() {
         type={feedbackType}
         show={showFeedback}
         onClose={() => setShowFeedback(false)}
-        userName={userNamePage}
       />
     </div>
   );

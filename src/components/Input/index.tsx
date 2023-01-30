@@ -2,7 +2,7 @@ import React from "react";
 import * as I from "./interfaces";
 import Image from "next/image";
 
-function index({
+function Input({
   label,
   name,
   type,
@@ -49,4 +49,4 @@ function index({
   );
 }
 
-export default index;
+export default Input;

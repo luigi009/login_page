@@ -1,10 +1,9 @@
 import React from "react";
 import * as I from "./interfaces";
 import { feedbackTypes } from "./const";
-import Link from "next/link";
 import Image from "next/image";
 
-function index({ type, show, onClose, userName }: I.FeedbackProps) {
+function Feedback({ type, show, onClose }: I.FeedbackProps) {
   const handleClose = () => {
     onClose();
   };
@@ -67,4 +66,4 @@ function index({ type, show, onClose, userName }: I.FeedbackProps) {
   );
 }
 
-export default index;
+export default Feedback;
